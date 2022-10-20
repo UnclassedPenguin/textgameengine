@@ -1,7 +1,7 @@
 package textgameengine
 
 import (
-  //"fmt"
+  "fmt"
   "time"
   "math/rand"
 )
@@ -28,17 +28,25 @@ type Game struct {
 // Inventory Functions
 //-----------------------------------------------------------------------------
 
-// Adds an item to the inventory, or just returns the inventory
-// I might be able to remove the return inventory feature? 
-// That was from my first implementation, don't think its needed
-// anymore, can just be accessed by player.Inventory
-func InventoryAdd(inventory *[]string, item string) *[]string {
-  if item == "?" {
-    return inventory
+// Pretty print Inventory
+
+func PrintInventory(inventory *[]string) {
+  if len(*inventory) > 0 {
+    fmt.Println("Inventory:")
+    fmt.Println("--------------------------")
+    for _, v := range *inventory {
+      fmt.Println("-", v)
+    }
+    fmt.Println("--------------------------")
   } else {
-    *inventory = append(*inventory, item)
-    return inventory
+    fmt.Println("Your inventory appears to be empty...")
   }
+}
+
+// Adds an item to the inventory, or just returns the inventory
+func InventoryAdd(inventory *[]string, item string) *[]string {
+  *inventory = append(*inventory, item)
+  return inventory
 }
 
 // Removes an item from the inventory
