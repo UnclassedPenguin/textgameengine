@@ -14,13 +14,15 @@ type Player struct {
   Name      string
   Score     int
   Inventory []string
-  Events    map[string]bool
 }
 
 //-----------------------------------------------------------------------------
 // End Player 
 //-----------------------------------------------------------------------------
 
+type Game struct {
+  Events    map[string]bool
+}
 
 //-----------------------------------------------------------------------------
 // Inventory Functions
