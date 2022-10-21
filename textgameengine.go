@@ -4,6 +4,7 @@ import (
   "fmt"
   "time"
   "math/rand"
+  "strings"
 )
 
 //-----------------------------------------------------------------------------
@@ -85,22 +86,6 @@ func InventoryIndexOf(inventory *[]string, item string) (int) {
 
 
 //-----------------------------------------------------------------------------
-// Events
-//-----------------------------------------------------------------------------
-
-// Add an event to events map
-//func EventAdd(events *[]map[string]bool, event string, b bool) *[]map[string]bool {
-    //(*events)[event] = b
-    //return events
-//}
-
-
-//-----------------------------------------------------------------------------
-// End Events
-//-----------------------------------------------------------------------------
-
-
-//-----------------------------------------------------------------------------
 // Random Functions
 //-----------------------------------------------------------------------------
 
@@ -109,6 +94,46 @@ func RandNumber(max int) int {
   rand.Seed(time.Now().UnixNano())
   rn := rand.Intn(max)
   return rn
+}
+
+// Word wrap used by PrintSlow
+func wordWrap(text string, lineWidth int) (wrapped string) {
+    words := strings.Fields(strings.TrimSpace(text))
+    if len(words) == 0 {
+        return text
+    }
+    wrapped = words[0]
+    spaceLeft := lineWidth - len(wrapped)
+    for _, word := range words[1:] {
+        if len(word)+1 > spaceLeft {
+            wrapped += "\n" + word
+            spaceLeft = lineWidth - len(word)
+        } else {
+            wrapped += " " + word
+            spaceLeft -= 1 + len(word)
+        }
+    }
+    return
+}
+
+// Prints the text character by character.
+func PrintSlow(str string, termWidth int, slowMode bool) {
+  str = wordWrap(str, termWidth)
+  if slowMode {
+    stringSplit := strings.Split(str, "")
+    for _, l := range stringSplit {
+      if l != " " {
+        fmt.Print(l)
+        time.Sleep(25 * time.Millisecond)
+      } else {
+        fmt.Print(l)
+        time.Sleep(55 * time.Millisecond)
+      }
+    }
+    fmt.Print("\n")
+  } else {
+    fmt.Println(str)
+  }
 }
 
 //-----------------------------------------------------------------------------
