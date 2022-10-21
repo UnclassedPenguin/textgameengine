@@ -31,7 +31,6 @@ type Game struct {
 //-----------------------------------------------------------------------------
 
 // Pretty print Inventory
-
 func PrintInventory(inventory *[]string) {
   if len(*inventory) > 0 {
     fmt.Println("Inventory:")
