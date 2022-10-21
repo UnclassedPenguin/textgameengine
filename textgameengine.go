@@ -22,6 +22,7 @@ type Player struct {
 
 type Game struct {
   Events    map[string]bool
+  TermWidth int
 }
 
 //-----------------------------------------------------------------------------
