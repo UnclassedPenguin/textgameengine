@@ -1,4 +1,4 @@
-package textgameengine
+package github.com/unclassedpenguin/textgameengine
 
 import (
   "fmt"
@@ -96,10 +96,11 @@ func RandNumber(max int) int {
 }
 
 // Word wrap used by PrintSlow
-func wordWrap(text string, lineWidth int) (wrapped string) {
-    words := strings.Fields(strings.TrimSpace(text))
+func wordWrap(str string, lineWidth int) (wrapped string) {
+    //words := strings.Fields(strings.TrimSpace(text))
+    words := strings.Fields(str)
     if len(words) == 0 {
-        return text
+        return str
     }
     wrapped = words[0]
     spaceLeft := lineWidth - len(wrapped)
