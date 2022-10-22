@@ -1,4 +1,4 @@
-package github.com/unclassedpenguin/textgameengine
+package textgameengine
 
 import (
   "fmt"
